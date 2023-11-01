@@ -1,0 +1,13 @@
+.sidebar {
+	height: 100%;
+	width: 150px;
+	right: auto;
+	left: 0;
+	background-color: lightblue;
+}
+
+.menu {
+	padding: 8px;
+	font-size: 24px;
+	display: block;
+}

@@ -1,13 +1,19 @@
 import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { Todo } from "../App";
 
-export function Navbar() {
+type NavbarProps = {
+	todos: Todo[];
+};
+
+export function Navbar({ todos }: NavbarProps) {
 	const { cartQuantity, openCart } = useShoppingCart();
+	const completedTaskCount = todos.filter((todo) => todo.completed).length | 0;
 
 	return (
 		// Use NavBarBs to avoid having same name as a component.
-		<NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
+		<NavbarBs sticky="top" className="bg-white shadow-sm">
 			<Container>
 				<Nav className="me-auto">
 					<Nav.Link as={NavLink} to="/">
@@ -16,10 +22,11 @@ export function Navbar() {
 					<Nav.Link as={NavLink} to="/store">
 						Store
 					</Nav.Link>
-					<Nav.Link as={NavLink} to="/about">
-						About
+					<Nav.Link as={NavLink} to="/todos">
+						Todos
 					</Nav.Link>
 				</Nav>
+				<span>Completed Task : {completedTaskCount}</span>
 				{cartQuantity > 0 && (
 					<Button
 						onClick={openCart}
