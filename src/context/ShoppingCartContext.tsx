@@ -53,11 +53,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 				return [...currentItems, { id, quantity: 1 }];
 			} else {
 				return currentItems.map((item) => {
-					if (item.id === id) {
-						return { ...item, quantity: item.quantity + 1 };
-					} else {
-						return item;
-					}
+					return item.id === id ? { ...item, quantity: item.quantity + 1 } : item;
 				});
 			}
 		});
